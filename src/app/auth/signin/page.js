@@ -16,7 +16,7 @@ export default function Signin() {
 
   return (
     <div className="flex flex-col items-center gap-20">
-      <div className="flex flex-col  w-[20dvw] gap-7">
+      <div className="flex flex-col  w-[23dvw] gap-7">
         <Input
           value={loginData.id}
           name="id"
@@ -34,7 +34,7 @@ export default function Signin() {
         />
       </div>
       <div className="flex flex-col gap-1">
-        <button className="px-2 py-3 w-[20dvw]  text-white rounded-full bg-primary transition-all hover:bg-[#48DC7D]">
+        <button className="px-2 py-3 w-[23dvw]  text-white rounded-full bg-primary transition-all hover:bg-[#48DC7D]">
           로그인
         </button>
         <p className="self-center pr-3 text-sm text-gray-700">

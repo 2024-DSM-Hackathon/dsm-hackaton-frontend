@@ -1,9 +1,12 @@
 "use client";
+import { imageUpload } from "@/api/imageUpload";
 import { Input } from "@/components/input";
+import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Signup() {
+  const [disable, setDisable] = useState(false);
   const [loginData, setLoginData] = useState({
     businessNumber: "",
     name: "",
@@ -15,19 +18,40 @@ export default function Signup() {
 
   const [mainImg, setMainImg] = useState();
 
+  const { mutate: getImgUrl } = useMutation({
+    mutationFn: imageUpload,
+    mutationKey: ["imageUpload"],
+    onSuccess: (data) => {
+      setLoginData({ ...loginData, image: data.url });
+      setDisable(false);
+    },
+  });
+
   const onChangeData = (e) => {
     const { name, value } = e.target;
     setLoginData({ ...loginData, [name]: value });
   };
 
+  useEffect(() => {
+    if (mainImg) {
+      setDisable(true);
+      getImgUrl(mainImg);
+    }
+  }, [mainImg]);
+
+  useEffect(() => {
+    console.log(loginData);
+  }, [loginData]);
+
   return (
     <div className="flex flex-col items-center gap-10">
-      <div className="flex flex-col  w-[23dvw] gap-7">
+      <div className="flex flex-col w-[23dvw] gap-7">
         <Input
           name="businessNumber"
           onChange={(e) => setMainImg(e.target.files[0])}
           label="회사 대표 사진"
           type="file"
+          disable={disable}
         />
         <Input
           value={loginData.businessNumber}

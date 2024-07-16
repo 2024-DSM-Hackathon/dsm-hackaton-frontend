@@ -33,25 +33,25 @@ export default function Company() {
             <div className="flex gap-3">
               <p className="w-20">급여</p>
               <div className="w-[300px] bg-gray-300 h-5 rounded-md">
-                <div className="w-[20%] bg-primary h-5 rounded-md"></div>
+                <div className="w-[20%] bg-primary h-5 rounded-md transition-all"></div>
               </div>
             </div>
             <div className="flex gap-3">
               <p className="w-20">워라벨</p>
               <div className="w-[300px] bg-gray-300 h-5 rounded-md">
-                <div className="w-[40%] bg-primary h-5 rounded-md"></div>
+                <div className="w-[40%] bg-primary h-5 rounded-md transition-all"></div>
               </div>
             </div>
             <div className="flex gap-3">
               <p className="w-20">근무환경</p>
               <div className="w-[300px] bg-gray-300 h-5 rounded-md">
-                <div className="w-[60%] bg-primary h-5 rounded-md"></div>
+                <div className="w-[60%] bg-primary h-5 rounded-md transition-all"></div>
               </div>
             </div>
             <div className="flex gap-3">
               <p className="w-20">직장문화</p>
               <div className="w-[300px] bg-gray-300 h-5 rounded-md">
-                <div className="w-[80%] bg-primary h-5 rounded-md"></div>
+                <div className="w-[80%] bg-primary h-5 rounded-md transition-all"></div>
               </div>
             </div>
           </div>
