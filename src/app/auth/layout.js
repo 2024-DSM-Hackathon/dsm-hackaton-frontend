@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Layout({ children }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-20 h-dvh w-dvw">
+    <div className="flex flex-col items-center justify-center gap-10 h-dvh w-dvw">
       <div className="flex flex-col items-center gap-3 text-4xl">
         <Link href="/">
           <div className="flex justify-center gap-5">

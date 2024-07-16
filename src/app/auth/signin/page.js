@@ -37,7 +37,7 @@ export default function Signin() {
         <button className="px-2 py-3 w-[20dvw]  text-white rounded-full bg-primary transition-all hover:bg-[#48DC7D]">
           로그인
         </button>
-        <p className="self-end pr-3 text-sm text-gray-700">
+        <p className="self-center pr-3 text-sm text-gray-700">
           아직 계정이 없으신가요?{" "}
           <Link href="/auth/signup">
             <u>회원가입</u>

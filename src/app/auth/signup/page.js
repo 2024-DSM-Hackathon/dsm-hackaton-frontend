@@ -9,7 +9,11 @@ export default function Signup() {
     name: "",
     id: "",
     pw: "",
+    description: "",
+    image: "",
   });
+
+  const [mainImg, setMainImg] = useState();
 
   const onChangeData = (e) => {
     const { name, value } = e.target;
@@ -17,8 +21,14 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-20">
-      <div className="flex flex-col  w-[20dvw] gap-7">
+    <div className="flex flex-col items-center gap-10">
+      <div className="flex flex-col  w-[23dvw] gap-7">
+        <Input
+          name="businessNumber"
+          onChange={(e) => setMainImg(e.target.files[0])}
+          label="회사 대표 사진"
+          type="file"
+        />
         <Input
           value={loginData.businessNumber}
           name="businessNumber"
@@ -32,6 +42,13 @@ export default function Signup() {
           onChange={onChangeData}
           label="기업명"
           placeholder="기업명 입력 (사업자등록증명원 기업명)"
+        />
+        <Input
+          value={loginData.description}
+          name="description"
+          onChange={onChangeData}
+          label="회사 설명"
+          placeholder="5~50자리"
         />
         <Input
           value={loginData.id}
@@ -50,10 +67,10 @@ export default function Signup() {
         />
       </div>
       <div className="flex flex-col gap-1">
-        <button className="px-2 py-3 w-[20dvw]  text-white rounded-full bg-primary transition-all hover:bg-[#48DC7D]">
+        <button className="px-2 py-3 w-[23dvw]  text-white rounded-full bg-primary transition-all hover:bg-[#48DC7D]">
           회원가입
         </button>
-        <p className="self-end pr-3 text-sm text-gray-700">
+        <p className="self-center pr-3 text-sm text-gray-700">
           이미 계정이 있으신가요?{" "}
           <Link href="/auth/signin">
             <u>로그인</u>
