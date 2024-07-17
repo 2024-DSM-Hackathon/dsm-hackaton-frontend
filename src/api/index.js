@@ -1,8 +1,13 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:8080";
+const baseUrl = "http://192.168.0.40:8080";
 
 export const AuthInstance = axios.create({
+  baseURL: baseUrl,
+  timeout: 10000,
+});
+
+export const Instance = axios.create({
   baseURL: baseUrl,
   timeout: 10000,
 });
@@ -25,7 +30,7 @@ AuthInstance.interceptors.response.use(
       const { message } = error.response.data;
       if (message === "로그인이 필요합니다.") {
         localStorage.removeItem("access_token");
-        window.location.href = "/login";
+        window.location.href = "/auth/signin";
       }
     } else {
       throw error;

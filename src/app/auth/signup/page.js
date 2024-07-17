@@ -4,9 +4,11 @@ import { imageUpload } from "@/api/imageUpload";
 import { Input } from "@/components/input";
 import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Signup() {
+  const nav = useRouter();
   const [disable, setDisable] = useState(false);
   const [loginData, setLoginData] = useState({
     registration_number: "",
@@ -15,6 +17,7 @@ export default function Signup() {
     pw: "",
     info: "",
     image: "",
+    industrySector: "",
   });
 
   const [mainImg, setMainImg] = useState();
@@ -32,7 +35,7 @@ export default function Signup() {
     mutationFn: signUpApi,
     mutationKey: ["signUpApi"],
     onSuccess: (data) => {
-      alert(data.message);
+      nav.push("/auth/signin");
     },
     onError: (error) => {
       console.log("error : ", data);
@@ -47,7 +50,8 @@ export default function Signup() {
       !loginData.id ||
       !loginData.pw ||
       !loginData.info ||
-      !loginData.image
+      !loginData.image ||
+      !loginData.industrySector
     ) {
       alert("지정된 양식을 다 채워주세요");
       return;
@@ -89,6 +93,13 @@ export default function Signup() {
           onChange={onChangeData}
           label="기업명"
           placeholder="기업명 입력 (사업자등록증명원 기업명)"
+        />
+        <Input
+          value={loginData.industrySector}
+          name="industrySector"
+          onChange={onChangeData}
+          label="분야"
+          placeholder="기업 분야"
         />
         <Input
           value={loginData.info}
