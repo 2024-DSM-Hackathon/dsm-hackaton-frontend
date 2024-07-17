@@ -6,12 +6,12 @@ const signUpApi = async (data) => {
   return response.data;
 };
 
-const loginApi = async () => {
-  const response = await AuthInstance.post("/signin", {
-    id,
-    pw,
-  });
-  return response.data;
-};
+const loginApi = async({id, pw}) => {
+    const response = await AuthInstance.post("/signin", {
+        id,
+        pw
+    })
+    return response.data
+}
 
 export { signUpApi, loginApi };
