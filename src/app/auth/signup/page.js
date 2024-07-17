@@ -1,4 +1,5 @@
 "use client";
+import { signUpApi } from "@/api/auth";
 import { imageUpload } from "@/api/imageUpload";
 import { Input } from "@/components/input";
 import { useMutation } from "@tanstack/react-query";
@@ -28,23 +29,31 @@ export default function Signup() {
   });
 
   const { mutate: signUpMutate } = useMutation({
-    mutationFn: (data) => loginApi(data.businessNumber, data.name, data.id, data.pw, data.info, data.image),
+    mutationFn: signUpApi,
     mutationKey: ["signUpApi"],
     onSuccess: (data) => {
       alert(data.message);
     },
     onError: (error) => {
+      console.log("error : ", data);
       alert(error);
     },
-  })
+  });
 
   const onSubmit = () => {
-    if(!loginData.businessNumber || !loginData.name || !loginData.id || !loginData.pw || !loginData.info || !loginData.image) {
-      alert("지정된 양식을 다 채워주세요")
-      return
+    if (
+      !loginData.registration_number ||
+      !loginData.name ||
+      !loginData.id ||
+      !loginData.pw ||
+      !loginData.info ||
+      !loginData.image
+    ) {
+      alert("지정된 양식을 다 채워주세요");
+      return;
     }
-    signUpMutate(...data);
-  }
+    signUpMutate(loginData);
+  };
 
   const onChangeData = (e) => {
     const { name, value } = e.target;
@@ -58,23 +67,18 @@ export default function Signup() {
     }
   }, [mainImg]);
 
-  useEffect(() => {
-    console.log(loginData);
-  }, [loginData]);
-
   return (
     <div className="flex flex-col items-center gap-10">
       <div className="flex flex-col w-[23dvw] gap-7">
         <Input
-          name="businessNumber"
           onChange={(e) => setMainImg(e.target.files[0])}
           label="회사 대표 사진"
           type="file"
           disable={disable}
         />
         <Input
-          value={loginData.businessNumber}
-          name="businessNumber"
+          value={loginData.registration_number}
+          name="registration_number"
           onChange={onChangeData}
           label="사업자 번호"
           placeholder="사업자 등록번호 직접 입력 (10자리)"
@@ -87,8 +91,8 @@ export default function Signup() {
           placeholder="기업명 입력 (사업자등록증명원 기업명)"
         />
         <Input
-          value={loginData.description}
-          name="description"
+          value={loginData.info}
+          name="info"
           onChange={onChangeData}
           label="회사 설명"
           placeholder="5~50자리"
@@ -110,8 +114,10 @@ export default function Signup() {
         />
       </div>
       <div className="flex flex-col gap-1">
-        <button className="px-2 py-3 w-[23dvw]  text-white rounded-full bg-primary transition-all hover:bg-[#48DC7D]"
-        onClick={onSubmit}>
+        <button
+          className="px-2 py-3 w-[23dvw]  text-white rounded-full bg-primary transition-all hover:bg-[#48DC7D]"
+          onClick={onSubmit}
+        >
           회원가입
         </button>
         <p className="self-center pr-3 text-sm text-gray-700">

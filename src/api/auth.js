@@ -1,24 +1,17 @@
-const { AuthInstance } = require(".")
+const { AuthInstance } = require(".");
 
-const signUpApi = async({registration_number, name, info, id, pw, image}) =>{
-    console.log("image",registration_number,  image)
-    const response = await AuthInstance.post("/signup", {
-        registration_number,
-        name,
-        info,
-        id,
-        pw,
-        image
-    })
-    return response.data
-}
+const signUpApi = async (data) => {
+  console.log("data", data);
+  const response = await AuthInstance.post("/signup", data);
+  return response.data;
+};
 
-const loginApi = async() => {
-    const response = await AuthInstance.post("/signin", {
-            id,
-            pw
-    })
-    return response.data
-}
+const loginApi = async () => {
+  const response = await AuthInstance.post("/signin", {
+    id,
+    pw,
+  });
+  return response.data;
+};
 
-export { signUpApi, loginApi } 
+export { signUpApi, loginApi };
