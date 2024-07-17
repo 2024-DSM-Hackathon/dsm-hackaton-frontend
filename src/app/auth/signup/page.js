@@ -8,11 +8,11 @@ import { useEffect, useState } from "react";
 export default function Signup() {
   const [disable, setDisable] = useState(false);
   const [loginData, setLoginData] = useState({
-    businessNumber: "",
+    registration_number: "",
     name: "",
     id: "",
     pw: "",
-    description: "",
+    info: "",
     image: "",
   });
 
@@ -26,6 +26,25 @@ export default function Signup() {
       setDisable(false);
     },
   });
+
+  const { mutate: signUpMutate } = useMutation({
+    mutationFn: (data) => loginApi(data.businessNumber, data.name, data.id, data.pw, data.info, data.image),
+    mutationKey: ["signUpApi"],
+    onSuccess: (data) => {
+      alert(data.message);
+    },
+    onError: (error) => {
+      alert(error);
+    },
+  })
+
+  const onSubmit = () => {
+    if(!loginData.businessNumber || !loginData.name || !loginData.id || !loginData.pw || !loginData.info || !loginData.image) {
+      alert("지정된 양식을 다 채워주세요")
+      return
+    }
+    signUpMutate(...data);
+  }
 
   const onChangeData = (e) => {
     const { name, value } = e.target;
@@ -91,7 +110,8 @@ export default function Signup() {
         />
       </div>
       <div className="flex flex-col gap-1">
-        <button className="px-2 py-3 w-[23dvw]  text-white rounded-full bg-primary transition-all hover:bg-[#48DC7D]">
+        <button className="px-2 py-3 w-[23dvw]  text-white rounded-full bg-primary transition-all hover:bg-[#48DC7D]"
+        onClick={onSubmit}>
           회원가입
         </button>
         <p className="self-center pr-3 text-sm text-gray-700">
