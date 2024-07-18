@@ -3,11 +3,11 @@ const { AuthInstance, Instance } = require(".");
 const signUpApi = async (data) => {
   const response = await Instance.post("/company/signUp", {
     logo: data.image,
-    registration_number: data.registration_number,
-    industry_sector: data.industrySector,
+    registrationNumber: data.registration_number,
+    industrySector: data.industrySector,
     name: data.name,
     info: data.info,
-    account_id: data.id,
+    accountId: data.id,
     password: data.pw,
   });
   return response.data;

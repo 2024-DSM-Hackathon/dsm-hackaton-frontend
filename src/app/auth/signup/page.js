@@ -16,7 +16,7 @@ export default function Signup() {
     id: "",
     pw: "",
     info: "",
-    image: "",
+    logo: "",
     industrySector: "",
   });
 

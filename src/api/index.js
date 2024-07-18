@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://192.168.0.40:8080";
+const baseUrl = "http://192.168.0.61:8080";
 
 export const AuthInstance = axios.create({
   baseURL: baseUrl,

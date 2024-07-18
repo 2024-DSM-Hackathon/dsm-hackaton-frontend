@@ -26,20 +26,6 @@ export default function Signin() {
   });
 
   const onSubmit = () => {
-    if (!loginData.id || !loginData.pw) {
-      alert("아이디 및 비밀번호를 입력해주세요");
-      return;
-    }
-    loginMutate(loginData);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setLoginData({ ...loginData, [name]: value });
-  };
-
-  const onSubmit = () => {
     console.log("loginData",loginData)
     if(!loginData.id || !loginData.pw) {
       alert("아이디 및 비밀번호를 입력해주세요")
@@ -50,7 +36,6 @@ export default function Signin() {
 
   const handleChange = (e)=>{
     const {name, value}=  e.target;
-
     setLoginData({...loginData, [name]:value})
   }
 
